@@ -26,7 +26,7 @@
             <div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @for($i=1;$i<count($posts);$i++)
                     <a rel="noopener noreferrer" href="#" class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50">
-                        <img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://picsum.photos/seed/picsum/480/360?random=">
+                        <img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500" src="https://picsum.photos/seed/picsum/480/360">
                         <div class="p-6 space-y-2">
                             <h3 class="text-2xl font-semibold group-hover:underline group-focus:underline">{{$posts[$i]->title}}</h3>
                             <span>{{$posts[0]->author_name}} </span><span class="text-xs text-gray-300 dark:text-gray-600">•</span>

@@ -17,6 +17,7 @@ class LikeController extends Controller
         ]);
 
         $user = Auth::user();
+
         $targetId = $request->input('target_id');
         $targetType = $request->input('target_type');
 

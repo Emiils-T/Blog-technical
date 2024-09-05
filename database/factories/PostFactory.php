@@ -19,7 +19,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'body' => $this->faker->paragraphs(3, true),
+            'body' => $this->faker->paragraphs(6, true),
             'user_id' => User::factory(),
             'author_name' => function (array $attributes) {
             return User::find($attributes['user_id'])->name;
