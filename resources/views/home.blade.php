@@ -7,7 +7,7 @@
 
     <section class="bg-white dark:text-gray-800">
         <div class="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-            <a rel="noopener noreferrer" href="posts/{{$posts[0]->id}}" class="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-50">
+            <a href="posts/{{$posts[0]->id}}" class="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-50">
                 <img src="https://picsum.photos/seed/picsum/480/360" alt="" class="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:bg-gray-500">
                 <div class="p-6 space-y-2 lg:col-span-5 bg-gray-50">
                     <h3 class="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">{{$posts[0]->title}}</h3>
@@ -42,7 +42,7 @@
                 @endfor
             </div>
             <div class="flex justify-center">
-                <button type="button" class="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-50 dark:text-gray-600">Load more posts...</button>
+                <a href="{{ route('posts.index') }}" type="button" class="px-6 py-3 text-sm rounded-md hover:underline dark:bg-gray-50 dark:text-gray-600">View All Posts</a>
             </div>
         </div>
     </section>

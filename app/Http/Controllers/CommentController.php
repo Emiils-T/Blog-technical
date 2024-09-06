@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function store(Request $request, Post $post)
     {
         $validatedData = $request->validate([
@@ -25,13 +20,28 @@ class CommentController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return back()->with('success', 'Comment added successfully.');
+        return back();
+    }
+    public function update(Request $request, Post $post, Comment $comment)
+    {
+        if ($comment->post_id !== $post->id) {
+            abort(404);
+        }
+
+        $validatedData = $request->validate([
+            'body' => 'required|string|max:1000',
+        ]);
+
+        $comment->update([
+            'body' => $validatedData['body']
+        ]);
+
+        return back();
     }
 
     public function destroy(Comment $comment)
     {
-        $this->authorize('delete', $comment);
         $comment->delete();
-        return back()->with('success', 'Comment deleted successfully.');
+        return back();
     }
 }

@@ -11,15 +11,21 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->paginate(13);
         return view('posts.index', compact('posts'));
     }
     public function show(string $id)
     {
         $id = intval($id);
         $post = Post::where('id', $id)->first();
+        $comments = $post->comments()->with('user')->latest()->get();
         $categories = $post->categories;
-        return view('posts.show',compact('post','categories'));
+        return view('posts.show',compact
+        (
+            'post',
+            'categories',
+            'comments'
+        ));
     }
 
 
@@ -48,36 +54,29 @@ class PostController extends Controller
 
         return redirect()->route('posts.index');
     }
-    public function edit()
+    public function edit(Post $post)
     {
-        return view('posts.edit');
+        return view('posts.edit',compact('post'));
     }
     public function update(Request $request, Post $post)
     {
-        // Authorize the request
-        $this->authorize('update', $post);
+        if (Auth::id() !== $post->user_id)
+        {
+            abort(403);
+        }
 
-        // Validate the request
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
-            // Add any other fields you want to update
         ]);
 
-        // Update the post
         $post->update($validatedData);
 
-        // Redirect to the updated post with a success message
-        return redirect()->route('posts.show', $post)
-            ->with('success', 'Post updated successfully');
+        return redirect()->route('posts.show', $post);
     }
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        $user = Auth::user();
-
-        $post=Post::where('id', $id)->get();
-
-        if($post->user_id === $user->id){
+        if (Auth::id() !== $post->user_id) {
             abort(403);
         }
         $post->delete();

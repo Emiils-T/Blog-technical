@@ -1,7 +1,14 @@
 <x-app-layout>
+    <div class="flex justify-center">
+        <div class="flex gap-3">
+            <h2 class="inline-block text-m font-medium tracking-wider uppercase mt-5">
+                Category: {{$category->name}} </h2>
+        </div>
+    </div>
+
     <section class="bg-white dark:text-gray-800">
         <div class="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-            <a href="posts/{{$posts[0]->id}}"
+            <a href="{{ route('posts.show', $posts[0]->id) }}"
                class="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-50">
                 <img src="https://picsum.photos/seed/picsum/480/360" alt=""
                      class="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:bg-gray-500">
@@ -23,7 +30,7 @@
             </a>
             <div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @for($i=1;$i<count($posts);$i++)
-                    <a href="posts/{{$posts[$i]->id}}"
+                    <a href="{{route('posts.show',$posts[$i]->id)}}"
                        class="max-w-sm mx-auto group hover:no-underline focus:no-underline dark:bg-gray-50">
                         <img role="presentation" class="object-cover w-full rounded h-44 dark:bg-gray-500"
                              src="https://picsum.photos/seed/picsum/480/360">
