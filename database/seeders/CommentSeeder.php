@@ -13,7 +13,7 @@ class CommentSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
         Post::all()->each(function ($post) {
             $numComments = rand(0, 5);

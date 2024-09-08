@@ -12,7 +12,7 @@ class PostSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
         User::all()->each(function ($user) {
             Post::factory(rand(1, 5))->create(['user_id' => $user->id])

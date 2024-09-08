@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    public function search(Request $request): View
     {
         $validatedData = $request->validate([
             'query' => 'required',
@@ -20,7 +21,5 @@ class SearchController extends Controller
             ->paginate(10);
 
         return view('search.results', compact('posts', 'query'));
-
-
     }
 }

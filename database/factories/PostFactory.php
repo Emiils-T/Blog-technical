@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'body' => $this->faker->paragraphs(6, true),
             'user_id' => User::factory(),
             'author_name' => function (array $attributes) {
-            return User::find($attributes['user_id'])->name;
+                return User::find($attributes['user_id'])->name;
             },
         ];
     }

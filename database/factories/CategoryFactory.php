@@ -16,7 +16,7 @@ class CategoryFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Category::class;
-    public function definition()
+    public function definition():array
     {
         return [
             'name' => $this->faker->unique()->word(),
