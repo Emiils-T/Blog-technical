@@ -44,7 +44,7 @@ This is an blog page project built using the Laravel framework, Tailwind CSS.
 Clone the project
 
 ```bash
-  git clone https://github.com/Emiils-T/ict_blog_technical_assignment.git
+  git clone https://github.com/Emiils-T/Blog-technical.git
 ```
 
 Go to the project directory
