@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\XssPreventionHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,16 @@ class Post extends Model
         'body',
         'author_name',
     ];
+
+    public function setTitleAttribute($value): void
+    {
+        $this->attributes['title'] = XssPreventionHelper::clean($value);
+    }
+
+    public function setBodyAttribute($value): void
+    {
+        $this->attributes['body'] = XssPreventionHelper::sanitizeHtml($value);
+    }
 
     public function user(): BelongsTo
     {

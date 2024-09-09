@@ -16,10 +16,9 @@ class CommentController extends Controller
         $validatedData = $request->validate([
             'body' => 'required',
         ]);
-        $cleanedBody = XssPreventionHelper::sanitizeHtml($validatedData['body']);
 
         $post->comments()->create([
-            'body' => $cleanedBody,
+            'body' => $validatedData['body'],
             'user_id' => Auth::id(),
         ]);
 
@@ -36,10 +35,8 @@ class CommentController extends Controller
             'body' => 'required|string|max:1000',
         ]);
 
-        $cleanedBody = XssPreventionHelper::sanitizeHtml($validatedData['body']);
-
         $comment->update([
-            'body' => $cleanedBody
+            'body' => $validatedData['body']
         ]);
 
         return back();

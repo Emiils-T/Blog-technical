@@ -50,8 +50,8 @@ class PostController extends Controller
         ]);
 
         $post = new Post;
-        $post->title = XssPreventionHelper::clean($validatedData['title']);
-        $post->body = XssPreventionHelper::sanitizeHtml($validatedData['body']);
+        $post->title = $validatedData['title'];
+        $post->body = $validatedData['body'];
         $post->author_name = Auth::user()->name;
         $post->user_id = Auth::id();
         $post->save();
@@ -67,7 +67,7 @@ class PostController extends Controller
         }
 
         foreach ($newCategoryNames as $name) {
-            $category = Category::firstOrCreate(['name' => XssPreventionHelper::clean($name)]);
+            $category = Category::firstOrCreate(['name' => $name]);
             $categoryIds[] = $category->id;
         }
 
@@ -92,9 +92,10 @@ class PostController extends Controller
             'new_categories' => 'nullable|string',
         ]);
 
-        $post->title = XssPreventionHelper::clean($validatedData['title']);
-        $post->body = XssPreventionHelper::sanitizeHtml($validatedData['body']);
-        $post->save();
+        $post->update([
+                'title' => $validatedData['title'],
+                'body' => $validatedData['body']]
+        );
 
         $categoryIds = $validatedData['categories'] ?? [];
 
@@ -107,7 +108,7 @@ class PostController extends Controller
         }
 
         foreach ($newCategoryNames as $name) {
-            $category = Category::firstOrCreate(['name' => XssPreventionHelper::clean($name)]);
+            $category = Category::firstOrCreate(['name' => $name]);
             $categoryIds[] = $category->id;
         }
 
