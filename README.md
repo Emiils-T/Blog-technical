@@ -15,7 +15,6 @@ This is an blog page project built using the Laravel framework, Tailwind CSS.
 - Post Management:
     - Users can create, edit, and delete their own posts.
     - Posts can be assigned to multiple categories.
-    - Featured image upload for posts (if implemented).
 
 
 - Comment System:
@@ -33,7 +32,7 @@ This is an blog page project built using the Laravel framework, Tailwind CSS.
 
 
 - Responsive Design:
-    - The blog is fully responsive and works on desktop and mobile devices.
+    - The blog is fully responsive and works on desktop and mobile screens.
 
 ## Prerequisites
 - PHP 8.2
